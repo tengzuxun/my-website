@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的网站 — 演示主页</title>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --bg: #ffffff;
+    --bg-soft: #f8fafc;
+    --border: #e2e8f0;
+    --radius: 16px;
+    --max-width: 1080px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+  }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+  /* ===== 导航栏 ===== */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-size: 20px; font-weight: 700; color: var(--primary);
+    text-decoration: none; letter-spacing: -0.5px;
+  }
+  .nav-links { display: flex; gap: 8px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-muted);
+    padding: 8px 14px; border-radius: 8px;
+    font-size: 15px; transition: all 0.2s;
+  }
+  .nav-links a:hover { color: var(--primary); background: var(--primary-light); }
+
+  /* ===== Hero 区 ===== */
+  .hero {
+    text-align: center;
+    padding: 110px 24px 90px;
+    background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--primary-light); color: var(--primary);
+    font-size: 14px; font-weight: 600;
+    padding: 6px 16px; border-radius: 999px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 800; letter-spacing: -1.5px;
+    line-height: 1.2; margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--primary); }
+  .hero p {
+    font-size: 18px; color: var(--text-muted);
+    max-width: 560px; margin: 0 auto 36px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 13px 32px; border-radius: 12px;
+    font-size: 16px; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+    cursor: pointer; border: none;
+  }
+  .btn-primary {
+    background: var(--primary); color: #fff;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45); }
+  .btn-ghost {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border); margin-left: 12px;
+  }
+  .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+
+  /* ===== 通用 Section ===== */
+  section { padding: 90px 0; }
+  .section-title { text-align: center; margin-bottom: 56px; }
+  .section-title h2 {
+    font-size: clamp(28px, 4vw, 36px); font-weight: 700; letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+  .section-title p { color: var(--text-muted); font-size: 17px; }
+
+  /* ===== 特性卡片 ===== */
+  .features { background: var(--bg-soft); }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    transition: all 0.25s;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    border-color: #bfdbfe;
+  }
+  .card-icon {
+    width: 52px; height: 52px;
+    background: var(--primary-light);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; margin-bottom: 20px;
+  }
+  .card h3 { font-size: 19px; margin-bottom: 10px; }
+  .card p { color: var(--text-muted); font-size: 15px; }
+
+  /* ===== 作品展示 ===== */
+  .work-item {
+    border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--border); background: var(--bg);
+    transition: all 0.25s;
+  }
+  .work-item:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(15, 23, 42, 0.1); }
+  .work-cover {
+    height: 170px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+  }
+  .c1 { background: linear-gradient(135deg, #dbeafe, #ede9fe); }
+  .c2 { background: linear-gradient(135deg, #dcfce7, #fef9c3); }
+  .c3 { background: linear-gradient(135deg, #ffe4e6, #dbeafe); }
+  .work-body { padding: 24px; }
+  .work-body h3 { font-size: 18px; margin-bottom: 6px; }
+  .work-body p { color: var(--text-muted); font-size: 14px; }
+
+  /* ===== 联系区 ===== */
+  .contact { background: var(--bg-soft); }
+  .contact-box {
+    max-width: 620px; margin: 0 auto;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+  }
+  .form-row { margin-bottom: 18px; }
+  .form-row label {
+    display: block; font-size: 14px; font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .form-row input, .form-row textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px; font-family: inherit;
+    transition: border-color 0.2s;
+    background: var(--bg);
+    color: var(--text);
+  }
+  .form-row input:focus, .form-row textarea:focus {
+    outline: none; border-color: var(--primary);
+  }
+  .form-row textarea { resize: vertical; min-height: 110px; }
+  .form-msg {
+    display: none;
+    text-align: center; color: #16a34a;
+    font-weight: 600; margin-top: 14px;
+  }
+
+  /* ===== 页脚 ===== */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  /* ===== 滚动淡入动画 ===== */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ===== 移动端 ===== */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .btn-ghost { margin-left: 0; margin-top: 12px; }
+    section { padding: 64px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<header>
+  <div class="container nav">
+    <a class="logo" href="#">我的网站</a>
+    <ul class="nav-links">
+      <li><a href="#features">特色</a></li>
+      <li><a href="#works">作品</a></li>
+      <li><a href="#contact">联系我</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- Hero 主视觉 -->
+<div class="hero">
+  <div class="hero-badge">👋 欢迎来到我的个人主页</div>
+  <h1>你好，我是<br><span>你的名字</span></h1>
+  <p>这是一段自我介绍占位文字。把它替换成你自己的介绍，比如你从事的行业、擅长的技能，或一句话展示你的价值。</p>
+  <a href="#works" class="btn btn-primary">查看我的作品</a>
+  <a href="#contact" class="btn btn-ghost">联系我</a>
+</div>
+
+<!-- 特色介绍 -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>我能提供什么</h2>
+      <p>三张卡片对应你最想展示的三项能力或服务</p>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal">
+        <div class="card-icon">🎨</div>
+        <h3>技能一（占位）</h3>
+        <p>在这里描述你的第一项技能或服务，比如网页设计、文案写作、咨询服务等，两三句话说清楚。</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">⚡</div>
+        <h3>技能二（占位）</h3>
+        <p>在这里描述你的第二项技能或服务，突出你能为别人解决什么问题、带来什么价值。</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">🚀</div>
+        <h3>技能三（占位）</h3>
+        <p>在这里描述你的第三项技能或服务，可以配一个成功案例或数据来增加说服力。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 作品展示 -->
+<section id="works">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>作品展示</h2>
+      <p>把这三个卡片替换成你的项目、作品或案例</p>
+    </div>
+    <div class="grid-3">
+      <div class="work-item reveal">
+        <div class="work-cover c1">🖼️</div>
+        <div class="work-body">
+          <h3>作品名称一</h3>
+          <p>一句话介绍这个作品是什么、用了什么技术或方法。</p>
+        </div>
+      </div>
+      <div class="work-item reveal">
+        <div class="work-cover c2">📊</div>
+        <div class="work-body">
+          <h3>作品名称二</h3>
+          <p>一句话介绍这个作品，最好带上成果，比如「上线 3 个月用户破万」。</p>
+        </div>
+      </div>
+      <div class="work-item reveal">
+        <div class="work-cover c3">🛠️</div>
+        <div class="work-body">
+          <h3>作品名称三</h3>
+          <p>一句话介绍这个作品，让访问者一眼看出你的能力范围。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 联系表单 -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>联系我</h2>
+      <p>留言或直接发送邮件到：your-email@example.com</p>
+    </div>
+    <div class="contact-box reveal">
+      <form id="contact-form">
+        <div class="form-row">
+          <label for="name">你的称呼</label>
+          <input type="text" id="name" placeholder="怎么称呼你？" required>
+        </div>
+        <div class="form-row">
+          <label for="email">邮箱</label>
+          <input type="email" id="email" placeholder="name@example.com" required>
+        </div>
+        <div class="form-row">
+          <label for="message">想说的话</label>
+          <textarea id="message" placeholder="写下你的需求或留言…" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%">发送留言</button>
+        <div class="form-msg" id="form-msg">✓ 已记录你的留言（演示状态，接入后端或邮箱服务后可真实发送）</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer>
+  © 2026 你的名字 · 本网站由 HTML + CSS + JavaScript 制作，托管完全免费
+</footer>
+
+<script>
+  // 滚动淡入动画
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // 表单演示提示
+  document.getElementById('contact-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('form-msg').style.display = 'block';
+    e.target.reset();
+  });
+</script>
+</body>
+</html>
