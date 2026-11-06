@@ -1,345 +1,1112 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>我的网站 — 演示主页</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>福建恒源电力设备有限公司 · 配电成套设备与智能配电箱</title>
+<meta name="description" content="福建恒源电力设备有限公司，2011年成立于福州闽侯。低压成套开关设备、动力配电箱、控制箱与柜体结构件制造，配电箱智能烟雾感应报警与通风散热系统。">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315181A'/%3E%3Cpath d='M7 9v14M7 16h7M14 9v14' stroke='%23B26B43' stroke-width='2.4'/%3E%3Crect x='19' y='8' width='7' height='16' fill='none' stroke='%23F0F1EE' stroke-width='1.4'/%3E%3C/svg%3E">
 <style>
-  :root {
-    --primary: #2563eb;
-    --primary-light: #dbeafe;
-    --text: #1e293b;
-    --text-muted: #64748b;
-    --bg: #ffffff;
-    --bg-soft: #f8fafc;
-    --border: #e2e8f0;
-    --radius: 16px;
-    --max-width: 1080px;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    color: var(--text);
-    background: var(--bg);
-    line-height: 1.7;
-  }
-  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+:root{
+  --ink:#15181a;
+  --ink-2:#1e2326;
+  --ink-3:#2a3135;
+  --paper:#eff1ef;
+  --white:#ffffff;
+  --copper:#a96a3f;
+  --copper-lt:#c98a5c;
+  --steel:#6f7a80;
+  --steel-lt:#9aa4a8;
+  --line:#d6d9d5;
+  --line-2:#e4e6e2;
+  --line-dark:rgba(255,255,255,.16);
+  --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);font-weight:400;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body.drawer-open{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+h1,h2,h3,h4,p,dl,dd,dt,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+.mono{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;font-variant-numeric:tabular-nums}
+.wrap{width:100%;max-width:1320px;margin:0 auto;padding:0 20px}
+@media(min-width:900px){.wrap{padding:0 44px}}
 
-  /* ===== 导航栏 ===== */
-  header {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
-  }
-  .logo {
-    font-size: 20px; font-weight: 700; color: var(--primary);
-    text-decoration: none; letter-spacing: -0.5px;
-  }
-  .nav-links { display: flex; gap: 8px; list-style: none; }
-  .nav-links a {
-    text-decoration: none; color: var(--text-muted);
-    padding: 8px 14px; border-radius: 8px;
-    font-size: 15px; transition: all 0.2s;
-  }
-  .nav-links a:hover { color: var(--primary); background: var(--primary-light); }
+/* ---------- 通用文本 ---------- */
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.16em;color:var(--steel);font-weight:500}
+.eyebrow::before{content:"";width:6px;height:6px;background:var(--copper);flex:none}
+.sec{padding:64px 0}
+@media(min-width:900px){.sec{padding:96px 0}}
+.sec-head{display:grid;gap:14px;margin-bottom:36px;border-top:1px solid var(--line);padding-top:20px}
+@media(min-width:900px){.sec-head{grid-template-columns:88px minmax(0,1.15fr) minmax(0,.85fr);align-items:start;gap:0 32px;margin-bottom:52px}}
+.sec-no{font-size:12px;letter-spacing:.1em;color:var(--copper);padding-top:6px;white-space:nowrap}
+.sec-title{font-size:clamp(1.5rem,4.4vw,2.15rem);font-weight:700;line-height:1.24;letter-spacing:-.01em}
+.sec-lead{font-size:14px;color:var(--steel);line-height:1.8;max-width:34em}
+@media(min-width:900px){.sec-lead{padding-top:8px;text-align:right;justify-self:end}}
 
-  /* ===== Hero 区 ===== */
-  .hero {
-    text-align: center;
-    padding: 110px 24px 90px;
-    background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%);
-  }
-  .hero-badge {
-    display: inline-block;
-    background: var(--primary-light); color: var(--primary);
-    font-size: 14px; font-weight: 600;
-    padding: 6px 16px; border-radius: 999px;
-    margin-bottom: 24px;
-  }
-  .hero h1 {
-    font-size: clamp(36px, 6vw, 56px);
-    font-weight: 800; letter-spacing: -1.5px;
-    line-height: 1.2; margin-bottom: 20px;
-  }
-  .hero h1 span { color: var(--primary); }
-  .hero p {
-    font-size: 18px; color: var(--text-muted);
-    max-width: 560px; margin: 0 auto 36px;
-  }
-  .btn {
-    display: inline-block;
-    padding: 13px 32px; border-radius: 12px;
-    font-size: 16px; font-weight: 600;
-    text-decoration: none; transition: all 0.2s;
-    cursor: pointer; border: none;
-  }
-  .btn-primary {
-    background: var(--primary); color: #fff;
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45); }
-  .btn-ghost {
-    background: transparent; color: var(--text);
-    border: 1px solid var(--border); margin-left: 12px;
-  }
-  .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+/* ---------- 顶栏 ---------- */
+.site-header{position:sticky;top:0;z-index:40;background:var(--ink);border-bottom:1px solid var(--line-dark)}
+.header-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
+@media(min-width:900px){.header-in{height:72px}}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-mark{width:38px;height:38px;border:1px solid rgba(201,138,92,.6);display:grid;place-items:center;color:#f0f1ee;font-size:11px;letter-spacing:.12em;flex:none}
+.brand-txt{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.brand-txt b{font-size:14px;font-weight:500;color:#f0f1ee;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-txt span{font-size:10px;letter-spacing:.14em;color:#8d989d}
+.nav{display:none}
+@media(min-width:900px){
+  .nav{display:flex;align-items:center;gap:34px}
+  .nav a{font-size:13px;color:rgba(240,241,238,.72);padding:6px 0;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
+  .nav a:hover,.nav a:focus-visible{color:#f0f1ee;border-bottom-color:var(--copper-lt)}
+}
+.header-cta{display:none}
+@media(min-width:900px){
+  .header-cta{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(240,241,238,.3);color:#f0f1ee;padding:9px 16px;font-size:13px;min-height:44px;transition:background .18s,border-color .18s}
+  .header-cta:hover{background:rgba(169,106,63,.18);border-color:var(--copper-lt)}
+}
+.menu-btn{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line-dark);color:#f0f1ee}
+@media(min-width:900px){.menu-btn{display:none}}
+.menu-btn svg{width:18px;height:18px}
+.mobile-nav{display:none;border-bottom:1px solid var(--line-dark);background:var(--ink-2)}
+.mobile-nav.open{display:block}
+.mobile-nav a{display:block;padding:14px 20px;font-size:14px;color:rgba(240,241,238,.8);border-bottom:1px solid rgba(255,255,255,.07)}
+.mobile-nav a:last-child{border-bottom:0}
 
-  /* ===== 通用 Section ===== */
-  section { padding: 90px 0; }
-  .section-title { text-align: center; margin-bottom: 56px; }
-  .section-title h2 {
-    font-size: clamp(28px, 4vw, 36px); font-weight: 700; letter-spacing: -1px;
-    margin-bottom: 12px;
-  }
-  .section-title p { color: var(--text-muted); font-size: 17px; }
+/* ---------- 首屏 ---------- */
+.hero{background:var(--ink);color:#f0f1ee;position:relative;overflow:hidden;padding:52px 0 0}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);background-size:calc(100% / 6) 100%;pointer-events:none}
+.hero-in{position:relative;z-index:1;display:grid;gap:34px}
+@media(min-width:960px){.hero-in{grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:56px;align-items:start}}
+.hero .eyebrow{color:#a2adb2}
+.hero h1{margin-top:22px;font-size:clamp(2rem,7.6vw,3.6rem);font-weight:700;line-height:1.16;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--copper-lt)}
+.hero-sub{margin-top:20px;font-size:14px;line-height:1.9;color:#b7c0c3;max-width:30em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;font-size:14px;border:1px solid transparent;transition:background .18s,color .18s,border-color .18s}
+.btn-solid{background:var(--copper);color:#fff}
+.btn-solid:hover{background:#8f5733}
+.btn-line{border-color:rgba(240,241,238,.34);color:#f0f1ee}
+.btn-line:hover{border-color:var(--copper-lt);background:rgba(169,106,63,.14)}
+.hero-meta{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:36px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12)}
+.hero-meta div{background:var(--ink);padding:16px 14px}
+.hero-meta dt{font-size:11px;color:#8d989d;letter-spacing:.08em}
+.hero-meta dd{margin-top:6px;font-size:20px;font-weight:500;color:#f0f1ee}
+.hero-meta dd small{font-size:11px;font-weight:400;color:#9aa4a8;margin-left:3px}
 
-  /* ===== 特性卡片 ===== */
-  .features { background: var(--bg-soft); }
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
-  }
-  .card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 32px;
-    transition: all 0.25s;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
-    border-color: #bfdbfe;
-  }
-  .card-icon {
-    width: 52px; height: 52px;
-    background: var(--primary-light);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 26px; margin-bottom: 20px;
-  }
-  .card h3 { font-size: 19px; margin-bottom: 10px; }
-  .card p { color: var(--text-muted); font-size: 15px; }
+/* 主视觉照片 + 图纸标注条 */
+.plate{border:1px solid rgba(255,255,255,.16);background:var(--ink-2)}
+.plate-img{position:relative;aspect-ratio:4/3;overflow:hidden}
+@media(min-width:960px){.plate-img{aspect-ratio:5/4}}
+.plate-img img{width:100%;height:100%;object-fit:cover;object-position:center 55%}
+.plate-img::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);pointer-events:none}
+.ruler{display:flex;justify-content:space-between;align-items:flex-end;padding:8px 10px 4px;border-bottom:1px solid rgba(255,255,255,.1);color:#768085;font-size:10px;letter-spacing:.06em}
+.ruler span{display:flex;flex-direction:column;align-items:center;gap:3px}
+.ruler span i{display:block;width:1px;height:5px;background:rgba(255,255,255,.3)}
+.ruler span:first-child{align-items:flex-start}
+.ruler span:last-child{align-items:flex-end}
+.plate-cap{display:flex;flex-wrap:wrap;padding:14px 16px;gap:14px 0}
+.plate-cap div{flex:1 1 30%;min-width:88px;border-right:1px solid rgba(255,255,255,.12);padding-right:12px}
+.plate-cap div:last-child{border-right:0}
+.plate-cap dt{font-size:10px;color:#859095;letter-spacing:.08em}
+.plate-cap dd{margin-top:4px;font-size:12px;color:#dfe3e0}
 
-  /* ===== 作品展示 ===== */
-  .work-item {
-    border-radius: var(--radius); overflow: hidden;
-    border: 1px solid var(--border); background: var(--bg);
-    transition: all 0.25s;
-  }
-  .work-item:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(15, 23, 42, 0.1); }
-  .work-cover {
-    height: 170px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 48px;
-  }
-  .c1 { background: linear-gradient(135deg, #dbeafe, #ede9fe); }
-  .c2 { background: linear-gradient(135deg, #dcfce7, #fef9c3); }
-  .c3 { background: linear-gradient(135deg, #ffe4e6, #dbeafe); }
-  .work-body { padding: 24px; }
-  .work-body h3 { font-size: 18px; margin-bottom: 6px; }
-  .work-body p { color: var(--text-muted); font-size: 14px; }
+/* ---------- 数据条 ---------- */
+.figures{background:var(--paper);border-bottom:1px solid var(--line);color:var(--ink)}
+.figures-in{display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:760px){.figures-in{grid-template-columns:repeat(4,1fr)}}
+.fig{padding:24px 4px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:baseline}
+.fig:last-child{border-bottom:0}
+@media(min-width:760px){
+  .fig{border-bottom:0;border-right:1px solid var(--line);padding:28px 24px}
+  .fig:first-child{padding-left:0}
+  .fig:last-child{border-right:0}
+}
+.fig b{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.fig span{font-size:12px;color:var(--steel);line-height:1.5}
 
-  /* ===== 联系区 ===== */
-  .contact { background: var(--bg-soft); }
-  .contact-box {
-    max-width: 620px; margin: 0 auto;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 40px;
-  }
-  .form-row { margin-bottom: 18px; }
-  .form-row label {
-    display: block; font-size: 14px; font-weight: 600;
-    margin-bottom: 6px;
-  }
-  .form-row input, .form-row textarea {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    font-size: 15px; font-family: inherit;
-    transition: border-color 0.2s;
-    background: var(--bg);
-    color: var(--text);
-  }
-  .form-row input:focus, .form-row textarea:focus {
-    outline: none; border-color: var(--primary);
-  }
-  .form-row textarea { resize: vertical; min-height: 110px; }
-  .form-msg {
-    display: none;
-    text-align: center; color: #16a34a;
-    font-weight: 600; margin-top: 14px;
-  }
+/* ---------- 制造 ---------- */
+.mfg-grid{display:grid;gap:36px}
+@media(min-width:960px){.mfg-grid{grid-template-columns:minmax(0,1fr) minmax(0,.92fr);gap:56px;align-items:start}}
+.steps{margin-top:8px;border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line-2)}
+.step-no{font-size:11px;color:var(--copper);padding-top:4px;letter-spacing:.08em}
+.step h3{font-size:16px;font-weight:500;line-height:1.4}
+.step p{font-size:13px;color:var(--steel);margin-top:4px;line-height:1.7}
+.mfg-photo figure{border:1px solid var(--line);background:var(--paper)}
+.mfg-photo img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.mfg-photo figcaption{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;font-size:11px;color:var(--steel);border-top:1px solid var(--line);letter-spacing:.04em}
+.mfg-note{margin-top:20px;padding:16px 18px;border-left:2px solid var(--copper);background:var(--paper);font-size:13px;line-height:1.8;color:#3c4548}
 
-  /* ===== 页脚 ===== */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 24px;
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 14px;
-  }
+/* ---------- 产品目录 ---------- */
+.products{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.toolbar{display:grid;gap:14px;margin-bottom:26px}
+@media(min-width:900px){.toolbar{grid-template-columns:1fr auto;align-items:center;gap:24px}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--white);padding:0 14px;min-height:40px;display:inline-flex;align-items:center;font-size:13px;color:#3c4548;transition:border-color .18s,background .18s,color .18s}
+.chip:hover{border-color:var(--steel-lt)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#f0f1ee}
+.chip .cnt{font-size:10px;color:var(--steel-lt);margin-left:7px}
+.chip[aria-pressed="true"] .cnt{color:rgba(240,241,238,.6)}
+.search{display:flex;align-items:center;gap:0;border:1px solid var(--line);background:var(--white);min-width:0}
+.search input{border:0;background:none;padding:0 14px;height:42px;font-size:16px;width:100%;font-family:inherit;color:var(--ink);min-width:0}
+.search input:focus{outline:none}
+.search input::placeholder{color:#9aa4a8;font-size:13px}
+.search-btn{width:44px;height:42px;display:grid;place-items:center;border-left:1px solid var(--line);color:var(--steel);flex:none}
+.search-btn:hover{color:var(--copper)}
+.search-btn svg{width:16px;height:16px}
+.result-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:18px;font-size:12px;color:var(--steel)}
+.result-bar b{color:var(--ink);font-weight:500}
+.link-reset{color:var(--copper);border-bottom:1px solid rgba(169,106,63,.4);padding-bottom:1px;font-size:12px}
+.grid-products{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(min-width:640px){.grid-products{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.grid-products{grid-template-columns:repeat(3,1fr)}}
+.pcard{background:var(--white);padding:22px 20px 20px;display:flex;flex-direction:column;gap:0;text-align:left;transition:background .18s;position:relative;cursor:pointer}
+.pcard:hover{background:#fafbf9}
+.pcard:hover .pcard-model{color:var(--copper)}
+.pcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.pcard-model{font-size:12px;letter-spacing:.1em;color:var(--steel);transition:color .18s}
+.pcard h3{font-size:17px;font-weight:500;line-height:1.4;margin-top:6px}
+.pcard-glyph{width:44px;height:58px;flex:none;opacity:.8}
+.pcard-glyph svg{width:100%;height:100%}
+.pspecs{margin-top:18px;border-top:1px solid var(--line-2)}
+.pspecs li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line-2);font-size:12px;color:var(--steel)}
+.pspecs li b{font-weight:400;color:#3c4548}
+.pcard-foot{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--steel)}
+.pcard-foot .go{color:var(--ink);font-weight:500;border-bottom:1px solid transparent;transition:border-color .18s,color .18s;min-height:44px;display:inline-flex;align-items:center}
+.pcard:hover .pcard-foot .go{border-bottom-color:var(--copper);color:var(--copper)}
+.empty-state{border:1px solid var(--line);background:var(--white);padding:44px 20px;text-align:center;grid-column:1/-1}
+.empty-state p{font-size:13px;color:var(--steel);margin-top:6px}
 
-  /* ===== 滚动淡入动画 ===== */
-  .reveal {
-    opacity: 0; transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .reveal.visible { opacity: 1; transform: none; }
+/* ---------- 抽屉 ---------- */
+.backdrop{position:fixed;inset:0;background:rgba(15,18,20,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
+.backdrop.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--white);z-index:70;transform:translateX(102%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.drawer.open{transform:translateX(0)}
+.drawer-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px;border-bottom:1px solid var(--line)}
+.drawer-head .k{font-size:11px;color:var(--copper);letter-spacing:.1em}
+.drawer-head h3{font-size:22px;font-weight:700;line-height:1.3;margin-top:6px;letter-spacing:-.01em}
+.drawer-close{width:40px;height:40px;border:1px solid var(--line);display:grid;place-items:center;flex:none;color:var(--steel)}
+.drawer-close:hover{color:var(--ink);border-color:var(--steel-lt)}
+.drawer-body{overflow-y:auto;padding:20px;flex:1}
+.drawer-sec{margin-bottom:26px}
+.drawer-sec h4{font-size:12px;letter-spacing:.08em;color:var(--steel);margin-bottom:10px;font-weight:500}
+.param{display:grid;grid-template-columns:100px 1fr;border-top:1px solid var(--line-2)}
+.param div{padding:9px 0;border-bottom:1px solid var(--line-2);font-size:13px}
+.param div:nth-child(odd){color:var(--steel);font-size:12px}
+.drawer-body p{font-size:13px;line-height:1.85;color:#3c4548}
+.docs-mini li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line-2);font-size:12px}
+.docs-mini .n{color:var(--copper);font-size:11px}
+.docs-mini .t{flex:1;min-width:0;color:#3c4548}
+.dl{font-size:11px;color:var(--steel);border:1px solid var(--line);padding:0 10px;min-height:34px;display:inline-flex;align-items:center;flex:none}
+.dl:hover{border-color:var(--copper);color:var(--copper)}
+.drawer-foot{padding:16px 20px;border-top:1px solid var(--line);display:flex;gap:10px;background:var(--paper)}
+.drawer-foot .btn{flex:1}
 
-  /* ===== 移动端 ===== */
-  @media (max-width: 640px) {
-    .nav-links { display: none; }
-    .btn-ghost { margin-left: 0; margin-top: 12px; }
-    section { padding: 64px 0; }
-  }
+/* ---------- 智能配电 ---------- */
+.smart{background:var(--ink);color:#f0f1ee;position:relative}
+.smart .sec-head{border-top-color:var(--line-dark)}
+.smart .sec-title{color:#f0f1ee}
+.smart .sec-lead{color:#a7b0b4}
+.smart .sec-no{color:var(--copper-lt)}
+.smart-grid{display:grid;gap:32px}
+@media(min-width:960px){.smart-grid{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:56px;align-items:start}}
+.sw-list{margin-top:6px;border-top:1px solid var(--line-dark)}
+.sw{display:grid;grid-template-columns:24px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.sw .ico{width:22px;height:22px;color:var(--copper-lt)}
+.sw h3{font-size:15px;font-weight:500}
+.sw p{font-size:12.5px;color:#a7b0b4;line-height:1.75;margin-top:5px}
+.demo-panel{border:1px solid var(--line-dark);background:var(--ink-2)}
+.demo-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line-dark);font-size:11px;letter-spacing:.08em;color:#8d989d}
+.demo-head b{color:#dfe3e0;font-weight:400;letter-spacing:0}
+.demo-tabs{display:flex;padding:12px 16px;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line-dark)}
+.dtab{font-size:12px;padding:8px 13px;border:1px solid rgba(255,255,255,.2);color:#b7c0c3;min-height:38px;display:inline-flex;align-items:center;transition:all .18s}
+.dtab[aria-pressed="true"]{border-color:var(--copper-lt);background:rgba(169,106,63,.16);color:#f3e6dc}
+.demo-read{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.12)}
+.demo-read div{background:var(--ink-2);padding:14px 16px}
+.demo-read dt{font-size:10px;color:#859095;letter-spacing:.06em}
+.demo-read dd{margin-top:5px;font-size:17px;font-weight:500}
+.demo-read dd small{font-size:11px;color:#859095;font-weight:400;margin-left:2px}
+.state-ok{color:#8fbf9a}
+.state-warn{color:#d9a441}
+.state-alarm{color:#d9704a}
+.demo-log{border-top:1px solid var(--line-dark);padding:12px 16px;font-size:11px;color:#8d989d;line-height:1.9;min-height:76px}
+.demo-log .row{display:flex;gap:10px}
+.demo-log .row span:first-child{color:#5f6a6e;flex:none}
+.smart-foot{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:18px;font-size:11px;color:#859095}
+
+/* ---------- 资料中心 ---------- */
+.docs .wrap{display:block}
+.doc-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.doc-head{display:grid;grid-template-columns:72px minmax(0,1fr) 64px 104px 92px 82px;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:11px;color:var(--steel);letter-spacing:.06em}
+@media(max-width:760px){.doc-head{display:none}}
+.doc-row{display:grid;grid-template-columns:72px minmax(0,1fr) 64px 104px 92px 82px;gap:12px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line-2)}
+@media(max-width:760px){.doc-row{grid-template-columns:1fr auto;gap:8px 12px;padding:18px 0}}
+.doc-row .no{font-size:11px;color:var(--copper);letter-spacing:.06em}
+.doc-row .ttl{font-size:14px;line-height:1.5;color:var(--ink)}
+.doc-row .sub{font-size:11px;color:var(--steel);margin-top:4px}
+.doc-row .ver,.doc-row .fmt,.doc-row .date{font-size:11.5px;color:var(--steel)}
+.doc-row .meta-mobile{display:none}
+@media(max-width:760px){
+  .doc-row .meta-mobile{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:11px;color:var(--steel);margin-top:2px}
+}
+.doc-row .date{text-align:right}
+.doc-row .act{justify-self:end}
+@media(max-width:760px){.doc-row .no{grid-row:1;grid-column:1}
+  .doc-row .ttl{grid-column:1/-1}
+  .doc-row .ver,.doc-row .fmt,.doc-row .date{display:none}
+  .doc-row .act{grid-row:1;grid-column:2}
+}
+.notice{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);background:var(--paper);padding:16px 18px;font-size:12.5px;line-height:1.8;color:#3c4548;margin-top:26px}
+.notice svg{width:16px;height:16px;color:var(--copper);flex:none;margin-top:3px}
+
+/* ---------- 交付流程 ---------- */
+.flow{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
+@media(min-width:860px){.flow{grid-template-columns:repeat(6,1fr);border-top:0}}
+.flow-step{position:relative;padding:18px 0 18px 26px;border-bottom:1px solid var(--line-2)}
+@media(min-width:860px){
+  .flow-step{padding:0 14px 0 0;border-bottom:0;border-top:1px solid var(--line);padding-top:20px}
+  .flow-step::before{content:"";position:absolute;left:0;top:-1px;width:1px;height:16px;background:var(--copper)}
+}
+.flow-step .q{font-size:11px;color:var(--copper);letter-spacing:.08em}
+.flow-step h3{font-size:14px;font-weight:500;margin-top:6px}
+.flow-step p{font-size:12px;color:var(--steel);line-height:1.7;margin-top:4px}
+@media(max-width:859px){.flow-step::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:1px;background:var(--line)}}
+
+/* ---------- 关于 ---------- */
+.about{background:var(--paper);border-top:1px solid var(--line)}
+.about-grid{display:grid;gap:36px}
+@media(min-width:960px){.about-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:56px}}
+.about p{font-size:14px;line-height:1.95;color:#3c4548;margin-bottom:14px;max-width:36em}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tags li{border:1px solid var(--line);background:var(--white);padding:6px 10px;font-size:12px;color:#3c4548}
+.fact{border:1px solid var(--line);background:var(--white)}
+.fact-row{display:grid;grid-template-columns:104px 1fr;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line-2);font-size:13px}
+.fact-row:last-child{border-bottom:0}
+.fact-row dt{font-size:12px;color:var(--steel)}
+.fact-row dd{margin:0;color:#23292c}
+.addr{margin-top:18px;border:1px solid var(--line);background:var(--white);padding:16px}
+.addr .eyebrow{margin-bottom:8px}
+.addr p{font-size:13px;line-height:1.8;color:#3c4548;margin:0}
+
+/* ---------- 询价 ---------- */
+.inquiry{background:var(--ink);color:#f0f1ee}
+.inquiry .sec-head{border-top-color:var(--line-dark)}
+.inquiry .sec-title{color:#f0f1ee}
+.inquiry .sec-lead{color:#a7b0b4}
+.inquiry .sec-no{color:var(--copper-lt)}
+.inq-grid{display:grid;gap:34px}
+@media(min-width:960px){.inq-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:56px}}
+.inq-info p{font-size:13px;line-height:1.9;color:#a7b0b4;max-width:28em}
+.contact-list{margin-top:24px;border-top:1px solid var(--line-dark)}
+.contact-list li{display:grid;grid-template-columns:64px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:13px}
+.contact-list dt,.contact-list .k{color:#859095;font-size:12px}
+.contact-list .v{color:#dfe3e0}
+.form{background:var(--ink-2);border:1px solid var(--line-dark);padding:22px}
+@media(min-width:700px){.form{padding:28px}}
+.form-grid{display:grid;gap:16px}
+@media(min-width:700px){.form-grid{grid-template-columns:1fr 1fr}}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:12px;color:#a7b0b4}
+.field label i{color:var(--copper-lt);font-style:normal;margin-left:3px}
+.field input,.field select,.field textarea{width:100%;background:var(--ink);border:1px solid rgba(255,255,255,.22);color:#f0f1ee;font-family:inherit;font-size:16px;padding:11px 12px;min-height:46px;border-radius:0;-webkit-appearance:none;appearance:none}
+.field textarea{min-height:96px;resize:vertical;line-height:1.6}
+.field select{background-image:linear-gradient(45deg,transparent 50%,#859095 50%),linear-gradient(135deg,#859095 50%,transparent 50%);background-position:calc(100% - 17px) 20px,calc(100% - 12px) 20px;background-size:5px 5px;background-repeat:no-repeat}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--copper-lt);outline-offset:-1px;border-color:transparent}
+.field .err{font-size:11px;color:#e08a63;min-height:0}
+.form-foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:20px}
+.form-foot .hint{font-size:11px;color:#859095;line-height:1.6;flex:1 1 220px}
+.form-result{margin-top:18px;border:1px solid rgba(201,138,92,.5);background:rgba(169,106,63,.1);padding:16px;font-size:12.5px;line-height:1.8;color:#e7ddd5;display:none}
+.form-result.show{display:block}
+.form-result b{color:#fff;font-weight:500}
+.form-result .acts{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.form-result .mini{font-size:11px;border:1px solid rgba(255,255,255,.28);padding:0 12px;min-height:36px;display:inline-flex;align-items:center}
+.form-result .mini:hover{border-color:var(--copper-lt)}
+
+/* ---------- 页脚 ---------- */
+.site-footer{background:#101315;color:#8d989d;padding:44px 0 26px;border-top:1px solid rgba(255,255,255,.12)}
+.footer-top{display:grid;gap:26px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.1)}
+@media(min-width:900px){.footer-top{grid-template-columns:minmax(0,1.2fr) repeat(3,minmax(0,.6fr));gap:32px}}
+.footer-brand b{display:block;font-size:16px;font-weight:500;color:#e6e9e6;letter-spacing:.02em}
+.footer-brand p{font-size:11px;line-height:1.9;margin-top:8px;max-width:22em;color:#7d888c}
+.footer-col h4{font-size:11px;letter-spacing:.1em;color:#b9c1c3;margin-bottom:10px;font-weight:500}
+.footer-col a,.footer-col span{display:block;font-size:12px;padding:5px 0;color:#8d989d}
+.footer-col a:hover{color:#e6e9e6}
+.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-top:18px;font-size:11px;line-height:1.8}
+.footer-bottom .demo-flag{color:#b3a08f}
+
+/* ---------- Toast ---------- */
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);background:var(--ink);color:#f0f1ee;border:1px solid rgba(201,138,92,.6);padding:12px 18px;font-size:12.5px;line-height:1.6;max-width:calc(100% - 32px);z-index:90;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- 无障碍 / 动效 ---------- */
+:focus-visible{outline:2px solid var(--copper-lt);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+section[id]{scroll-margin-top:64px}
+@media(min-width:900px){section[id]{scroll-margin-top:78px}}
 </style>
 </head>
 <body>
-
-<!-- 导航栏 -->
-<header>
-  <div class="container nav">
-    <a class="logo" href="#">我的网站</a>
-    <ul class="nav-links">
-      <li><a href="#features">特色</a></li>
-      <li><a href="#works">作品</a></li>
-      <li><a href="#contact">联系我</a></li>
-    </ul>
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="brand" href="#top" aria-label="恒源电力首页">
+      <span class="brand-mark mono">HY</span>
+      <span class="brand-txt">
+        <b>福建恒源电力设备有限公司</b>
+        <span class="mono">FUJIAN HENGYUAN POWER EQUIPMENT</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#products">产品目录</a>
+      <a href="#smart">智能配电</a>
+      <a href="#docs">技术资料</a>
+      <a href="#about">关于恒源</a>
+      <a href="#inquiry">联系与询价</a>
+    </nav>
+    <a class="header-cta" href="#inquiry">获取报价</a>
+    <button class="menu-btn" id="menuBtn" aria-label="打开导航" aria-expanded="false" aria-controls="mobileNav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#products">产品目录</a>
+    <a href="#smart">智能配电</a>
+    <a href="#docs">技术资料</a>
+    <a href="#about">关于恒源</a>
+    <a href="#inquiry">联系与询价</a>
   </div>
 </header>
 
-<!-- Hero 主视觉 -->
-<div class="hero">
-  <div class="hero-badge">👋 欢迎来到我的个人主页</div>
-  <h1>你好，我是<br><span>你的名字</span></h1>
-  <p>这是一段自我介绍占位文字。把它替换成你自己的介绍，比如你从事的行业、擅长的技能，或一句话展示你的价值。</p>
-  <a href="#works" class="btn btn-primary">查看我的作品</a>
-  <a href="#contact" class="btn btn-ghost">联系我</a>
-</div>
-
-<!-- 特色介绍 -->
-<section class="features" id="features">
-  <div class="container">
-    <div class="section-title reveal">
-      <h2>我能提供什么</h2>
-      <p>三张卡片对应你最想展示的三项能力或服务</p>
+<main id="top">
+<!-- ===== 首屏 ===== -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <div class="eyebrow">福建 · 福州闽侯 · 自 2011 年</div>
+      <h1>从一块冷轧板，<br>到一整套<em>配电系统</em>。</h1>
+      <p class="hero-sub">恒源电力做低压成套开关设备、动力配电箱、控制箱与柜体结构件；也把烟雾感应和通风散热做进配电箱里——柜子不光要装得下元件，还要能自己报警。</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="#products">查看产品目录</a>
+        <a class="btn btn-line" href="#docs">下载技术资料</a>
+      </div>
+      <dl class="hero-meta">
+        <div><dt>成立时间</dt><dd class="mono">2011.08</dd></div>
+        <div><dt>在产型号</dt><dd class="mono">9 <small>个 / 4 类</small></dd></div>
+        <div><dt>所在地</dt><dd>闽侯 · 南屿</dd></div>
+        <div><dt>软件著作权</dt><dd class="mono">2 <small>项</small></dd></div>
+      </dl>
     </div>
-    <div class="grid-3">
-      <div class="card reveal">
-        <div class="card-icon">🎨</div>
-        <h3>技能一（占位）</h3>
-        <p>在这里描述你的第一项技能或服务，比如网页设计、文案写作、咨询服务等，两三句话说清楚。</p>
+    <div class="plate">
+      <div class="plate-img">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/MCPXbs7DHoRpy2xik5ecZbzTnnb" alt="成排低压成套开关柜在制造车间内完成装配" width="2709" height="1548">
       </div>
-      <div class="card reveal">
-        <div class="card-icon">⚡</div>
-        <h3>技能二（占位）</h3>
-        <p>在这里描述你的第二项技能或服务，突出你能为别人解决什么问题、带来什么价值。</p>
+      <div class="ruler mono"><span>出厂前整列联调</span><span>闽侯 · 南屿车间</span></div>
+      <dl class="plate-cap">
+        <div><dt>单柜宽</dt><dd class="mono">800 mm</dd></div>
+        <div><dt>柜高</dt><dd class="mono">2200 mm</dd></div>
+        <div><dt>防护等级</dt><dd class="mono">IP30–IP40</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div class="figures" style="margin-top:56px">
+    <div class="wrap figures-in">
+      <div class="fig"><b class="mono">2011</b><span>成立于福州闽侯，<br>配电设备制造起步</span></div>
+      <div class="fig"><b class="mono">2024</b><span>获评福建省<br>创新型中小企业</span></div>
+      <div class="fig"><b class="mono">2</b><span>烟感报警 / 通风散热<br>软件著作权</span></div>
+      <div class="fig"><b class="mono">4 / 9</b><span>四大类别、<br>九个在产型号</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 制造 ===== -->
+<section class="sec" id="mfg">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-no mono">02 / 制造</div>
+      <h2 class="sec-title">成套设备的差别，<br>多半在图纸之外</h2>
+      <p class="sec-lead">同样的系统图，钣金公差、铜排走向和接线工艺不同，柜子用起来就是两种东西。六个工序，每一道都留检验记录。</p>
+    </div>
+    <div class="mfg-grid">
+      <div>
+        <div class="steps">
+          <div class="step"><div class="step-no mono">01</div><div><h3>下料</h3><p>数控冲床配激光切割，1.0–2.5 mm 冷轧板与 304 不锈钢分开下料，切口不留毛刺。</p></div></div>
+          <div class="step"><div class="step-no mono">02</div><div><h3>折弯成型</h3><p>骨架与门板同批定位折弯，控制对角线误差；门缝平齐靠工装，不靠装配时硬调。</p></div></div>
+          <div class="step"><div class="step-no mono">03</div><div><h3>焊接与打磨</h3><p>框架满焊后逐点打磨，焊缝不上腻子遮盖；柜体强度按整列并柜工况考虑。</p></div></div>
+          <div class="step"><div class="step-no mono">04</div><div><h3>前处理与喷涂</h3><p>除油、除锈、磷化后静电粉末喷涂，门板外表面与柜内腔同步上膜，边角不露底。</p></div></div>
+          <div class="step"><div class="step-no mono">05</div><div><h3>装配与接线</h3><p>铜排下料压弯、接触面搪锡；按图接线并逐线打线号，端子紧固力矩复核后划记。</p></div></div>
+          <div class="step"><div class="step-no mono">06</div><div><h3>出厂试验</h3><p>绝缘电阻、介电耐压、保护电路连续性与功能联调逐台做，试验记录随机文件一并交付。</p></div></div>
+        </div>
       </div>
-      <div class="card reveal">
-        <div class="card-icon">🚀</div>
-        <h3>技能三（占位）</h3>
-        <p>在这里描述你的第三项技能或服务，可以配一个成功案例或数据来增加说服力。</p>
+      <div class="mfg-photo">
+        <figure>
+          <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/TZ5GbSmO9oPpLbxGzPNccrXPnde" alt="配电柜内部的铜排、端子排与塑壳断路器" width="2508" height="1672" loading="lazy">
+          <figcaption><span>柜内装配：母线、端子与断路器</span><span>示意图</span></figcaption>
+        </figure>
+        <div class="mfg-note">线号、回路编号与系统图一一对应，是交付时最容易被忽略、也最影响现场调试的一件事。</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 作品展示 -->
-<section id="works">
-  <div class="container">
-    <div class="section-title reveal">
-      <h2>作品展示</h2>
-      <p>把这三个卡片替换成你的项目、作品或案例</p>
+<!-- ===== 03 产品目录 ===== -->
+<section class="sec products" id="products">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-no mono">03 / 产品目录</div>
+      <h2 class="sec-title">四类柜型，九个在产型号</h2>
+      <p class="sec-lead">按用途分成低压成套、配电箱与控制箱、智能监测、柜体结构件四类。点开任一型号，可查完整参数、适用场景和配套资料。</p>
     </div>
-    <div class="grid-3">
-      <div class="work-item reveal">
-        <div class="work-cover c1">🖼️</div>
-        <div class="work-body">
-          <h3>作品名称一</h3>
-          <p>一句话介绍这个作品是什么、用了什么技术或方法。</p>
+    <div class="toolbar">
+      <div class="chips" id="catChips" role="group" aria-label="产品类别筛选"></div>
+      <div class="search">
+        <input type="search" id="prodSearch" placeholder="搜索型号或用途，如 GGD、动力配电箱" aria-label="搜索产品">
+        <button class="search-btn" id="prodSearchBtn" aria-label="搜索">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="result-bar">
+      <span id="resultText">共 9 个型号</span>
+      <button class="link-reset" id="resetFilter" style="display:none">清除筛选</button>
+    </div>
+    <div class="grid-products" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- ===== 04 智能配电 ===== -->
+<section class="sec smart" id="smart">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-no mono">04 / 智能配电</div>
+      <h2 class="sec-title">两项软件著作权，<br>落在配电箱里</h2>
+      <p class="sec-lead">烟感与散热不是事后加装的盒子：传感器位置、风机开孔、走线空间，和箱体一起设计。</p>
+    </div>
+    <div class="smart-grid">
+      <div>
+        <ul class="sw-list">
+          <li class="sw">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M5.6 18.4l2.1-2.1M12 21v-3M18.4 18.4l-2.1-2.1M21 12h-3M18.4 5.6l-2.1 2.1"/><circle cx="12" cy="12" r="3.2"/></svg>
+            <div><h3>烟雾感应报警管理</h3><p>分级阈值，超限先本地声光提示，再推送至值班端；告警时间、回路位置与处理动作留档可导出。</p></div>
+          </li>
+          <li class="sw">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h14a3 3 0 1 1-3 3M3 16h7"/></svg>
+            <div><h3>通风散热调节</h3><p>按箱内温度分档启停风机，不常年全速运行；滤网堵塞与风机失效分别提示，避免温升被误判为负载问题。</p></div>
+          </li>
+          <li class="sw">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="1.6"/><circle cx="16" cy="12" r="1.6"/><circle cx="11" cy="18" r="1.6"/></svg>
+            <div><h3>通讯与接入</h3><p>RS485 / Modbus RTU 为主，可选 4G 网关上云；监测回路独立取能，不改动原有配电回路的保护逻辑。</p></div>
+          </li>
+        </ul>
+        <div class="smart-foot">
+          <span>· 软件著作权登记名称：配电箱智能烟雾感应报警管理软件</span>
+          <span>· 配电箱通风散热调节系统</span>
         </div>
       </div>
-      <div class="work-item reveal">
-        <div class="work-cover c2">📊</div>
-        <div class="work-body">
-          <h3>作品名称二</h3>
-          <p>一句话介绍这个作品，最好带上成果，比如「上线 3 个月用户破万」。</p>
+      <div class="demo-panel" aria-label="智能配电箱工况交互演示">
+        <div class="demo-head"><b>HYX-1 工况演示</b><span class="mono">DEMO</span></div>
+        <div class="demo-tabs" id="demoTabs" role="group" aria-label="切换工况">
+          <button class="dtab" data-state="normal" aria-pressed="true">常态运行</button>
+          <button class="dtab" data-state="heat" aria-pressed="false">箱内温升</button>
+          <button class="dtab" data-state="smoke" aria-pressed="false">烟感报警</button>
         </div>
+        <dl class="demo-read">
+          <div><dt>箱内温度</dt><dd id="dTemp">32<small>℃</small></dd></div>
+          <div><dt>风机状态</dt><dd id="dFan">停止</dd></div>
+          <div><dt>告警级别</dt><dd id="dAlarm">无</dd></div>
+          <div><dt>联动输出</dt><dd id="dOut">待命</dd></div>
+        </dl>
+        <div class="demo-log mono" id="demoLog" aria-live="polite"></div>
       </div>
-      <div class="work-item reveal">
-        <div class="work-cover c3">🛠️</div>
-        <div class="work-body">
-          <h3>作品名称三</h3>
-          <p>一句话介绍这个作品，让访问者一眼看出你的能力范围。</p>
+    </div>
+  </div>
+</section>
+<!-- ===== 05 技术资料 ===== -->
+<section class="sec docs" id="docs">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-no mono">05 / 技术资料</div>
+      <h2 class="sec-title">样本、选型表与图纸，<br>按编号归档</h2>
+      <p class="sec-lead">需要盖章版样本、与本项目匹配的系统图，或某个型号的型式试验报告，用右侧申请入口说明项目情况。</p>
+    </div>
+    <div class="doc-chips" id="docChips" role="group" aria-label="资料类别筛选"></div>
+    <div class="doc-head mono">
+      <span>编号</span><span>资料名称</span><span>版本</span><span>格式 · 大小</span><span>更新</span><span style="text-align:right">操作</span>
+    </div>
+    <div id="docList"></div>
+    <div class="notice">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v.5M12 11v5"/></svg>
+      <p><strong style="font-weight:500">演示说明：</strong>本页资料条目、版本号与文件大小为示例。点击下载会在本地生成一份对应的资料说明文件（.txt），用于演示下载流程；正式上线时替换为真实的 PDF / DWG / XLSX 附件。需要完整资料请走询价申请。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 交付流程 ===== -->
+<section class="sec" id="flow">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-no mono">06 / 交付</div>
+      <h2 class="sec-title">从图纸会审到送电</h2>
+      <p class="sec-lead">每个节点都有对应文件：会审记录、订货参数确认单、出厂试验报告、装箱单与现场调试记录。</p>
+    </div>
+    <div class="flow">
+      <div class="flow-step"><div class="q mono">01</div><h3>需求与图纸会审</h3><p>确认回路、柜型、安装条件与并柜方式</p></div>
+      <div class="flow-step"><div class="q mono">02</div><h3>报价与订货确认</h3><p>出订货参数表，双方签认后冻结版本</p></div>
+      <div class="flow-step"><div class="q mono">03</div><h3>生产排产</h3><p>钣金、铜排与元件按柜号分批投产</p></div>
+      <div class="flow-step"><div class="q mono">04</div><h3>出厂试验</h3><p>逐台试验并附记录，不合格件返工</p></div>
+      <div class="flow-step"><div class="q mono">05</div><h3>包装发运</h3><p>柜体固定、防潮防磕碰，随柜附带随机文件</p></div>
+      <div class="flow-step"><div class="q mono">06</div><h3>现场调试与回访</h3><p>配合送电、处理接线偏差，记录运行问题</p></div>
+    </div>
+    <div class="mfg-note" style="margin-top:28px">常规柜型的生产周期约 15–25 个工作日，具体以排产与元件到货时间为准；加急项目需在会审阶段提出。</div>
+  </div>
+</section>
+
+<!-- ===== 07 关于 ===== -->
+<section class="sec about" id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-no mono">07 / 关于</div>
+      <h2 class="sec-title">一家做柜子的<br>福建本地厂</h2>
+      <p class="sec-lead">制造在闽侯，服务半径以福建为主，也接省外成套与配套项目。</p>
+    </div>
+    <div class="about-grid">
+      <div class="about">
+        <p>福建恒源电力设备有限公司成立于 2011 年 8 月，厂址位于福州市闽侯县南屿镇尧溪路 18 号。以配电开关控制设备制造为主业，同时覆盖电力电子元器件、输变配电监测控制设备、电器辅件与金属结构件的制造与销售；销售端延伸到电力设施器材、照明器具与五金建材。</p>
+        <p>2024 年，公司获评福建省创新型中小企业。围绕配电箱的智能化，取得「配电箱智能烟雾感应报警管理软件」与「配电箱通风散热调节系统」两项软件著作权——把监测与散热做进标准化箱体，而不是现场临时加装。</p>
+        <p>对设计院和总包来说，这意味着柜型可以按系统图定制，箱体内部的智能模块也能在同一张图纸上一起定；对运维来说，报警和温控的记录能留下来，不必只靠巡检时的那一眼。</p>
+        <ul class="tags">
+          <li>配电开关控制设备制造</li><li>电力电子元器件</li><li>输变配电监测控制设备</li><li>电器辅件</li><li>电力设施器材</li><li>金属结构件</li><li>五金与建材销售</li>
+        </ul>
+      </div>
+      <div>
+        <div class="fact">
+          <div class="fact-row"><dt>成立时间</dt><dd class="mono">2011-08-24</dd></div>
+          <div class="fact-row"><dt>企业所在地</dt><dd>福建省福州市闽侯县南屿镇尧溪路 18 号 23 号楼</dd></div>
+          <div class="fact-row"><dt>主营</dt><dd>低压成套开关设备 · 配电箱与控制箱 · 柜体结构件</dd></div>
+          <div class="fact-row"><dt>资质荣誉</dt><dd>2024 年福建省创新型中小企业</dd></div>
+          <div class="fact-row"><dt>软件著作权</dt><dd>烟感报警管理软件 · 通风散热调节系统（2 项）</dd></div>
+          <div class="fact-row"><dt>企业规模</dt><dd>小微企业（按公开登记信息）</dd></div>
+        </div>
+        <div class="addr">
+          <div class="eyebrow">厂址</div>
+          <p>福建省福州市闽侯县南屿镇尧溪路 18 号 23 号楼<br>来访请提前电话预约，便于安排车间参观与样柜查看。</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 联系表单 -->
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="section-title reveal">
-      <h2>联系我</h2>
-      <p>留言或直接发送邮件到：your-email@example.com</p>
+<!-- ===== 08 询价 ===== -->
+<section class="sec inquiry" id="inquiry">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-no mono">08 / 联系</div>
+      <h2 class="sec-title">把条件写清楚，<br>报价会快很多</h2>
+      <p class="sec-lead">柜型、回路数、进出线方式、安装环境与交付时间，这五项齐全基本就能报价。</p>
     </div>
-    <div class="contact-box reveal">
-      <form id="contact-form">
-        <div class="form-row">
-          <label for="name">你的称呼</label>
-          <input type="text" id="name" placeholder="怎么称呼你？" required>
+    <div class="inq-grid">
+      <div class="inq-info">
+        <p>资料索取、图纸配合、成套报价与售后备件，都走同一条通道。工作时间内提交，通常当日回复。</p>
+        <ul class="contact-list">
+          <li><span class="k">厂址</span><span class="v">福建省福州市闽侯县南屿镇尧溪路 18 号 23 号楼</span></li>
+          <li><span class="k">电话</span><span class="v mono">0591-XXXX XXXX</span><span></span></li>
+          <li><span class="k">邮箱</span><span class="v mono">sales@example.com</span></li>
+          <li><span class="k">工作时间</span><span class="v">周一至周六 08:30–17:30</span></li>
+        </ul>
+        <p style="margin-top:18px;font-size:11.5px;color:#859095">电话与邮箱为占位内容，正式上线前替换为企业实际联系方式。</p>
+      </div>
+      <form class="form" id="inquiryForm" novalidate>
+        <div class="form-grid">
+          <div class="field"><label for="fProject">项目名称<i>*</i></label><input id="fProject" name="project" type="text" placeholder="如：连江某冻库配电改造" autocomplete="off"><span class="err" data-err="fProject"></span></div>
+          <div class="field"><label for="fType">需求类型<i>*</i></label>
+            <select id="fType" name="type">
+              <option value="成套选型与报价">成套选型与报价</option>
+              <option value="图纸配合与改型">图纸配合与改型</option>
+              <option value="技术资料索取">技术资料索取</option>
+              <option value="售后与备件">售后与备件</option>
+              <option value="其他">其他</option>
+            </select><span class="err" data-err="fType"></span></div>
+          <div class="field"><label for="fModel">关注型号</label><select id="fModel" name="model"></select></div>
+          <div class="field"><label for="fContact">联系人<i>*</i></label><input id="fContact" name="contact" type="text" autocomplete="name" placeholder="姓名"><span class="err" data-err="fContact"></span></div>
+          <div class="field"><label for="fPhone">联系电话<i>*</i></label><input id="fPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="手机或座机"><span class="err" data-err="fPhone"></span></div>
+          <div class="field full"><label for="fNote">需求说明</label><textarea id="fNote" name="note" placeholder="回路数量、进出线方式、安装环境、期望交付时间；有系统图可直接说明图纸版本。"></textarea></div>
         </div>
-        <div class="form-row">
-          <label for="email">邮箱</label>
-          <input type="email" id="email" placeholder="name@example.com" required>
+        <div class="form-foot">
+          <span class="hint">提交为本页演示，信息不会发送到任何服务器；正式上线需接入表单服务或企业邮箱。</span>
+          <button class="btn btn-solid" type="submit">提交需求</button>
         </div>
-        <div class="form-row">
-          <label for="message">想说的话</label>
-          <textarea id="message" placeholder="写下你的需求或留言…" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width:100%">发送留言</button>
-        <div class="form-msg" id="form-msg">✓ 已记录你的留言（演示状态，接入后端或邮箱服务后可真实发送）</div>
+        <div class="form-result" id="formResult" aria-live="polite"></div>
       </form>
     </div>
   </div>
 </section>
 
-<!-- 页脚 -->
-<footer>
-  © 2026 你的名字 · 本网站由 HTML + CSS + JavaScript 制作，托管完全免费
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <b>福建恒源电力设备有限公司</b>
+        <p>低压成套开关设备 · 动力配电箱与控制箱 · 柜体结构件 · 配电箱智能监测<br>福建省福州市闽侯县南屿镇尧溪路 18 号 23 号楼</p>
+      </div>
+      <div class="footer-col">
+        <h4>产品</h4>
+        <a href="#products" data-cat="lv">低压成套</a>
+        <a href="#products" data-cat="box">配电箱与控制箱</a>
+        <a href="#products" data-cat="smart">智能监测</a>
+        <a href="#products" data-cat="frame">柜体与结构件</a>
+      </div>
+      <div class="footer-col">
+        <h4>资料</h4>
+        <a href="#docs">产品样本</a>
+        <a href="#docs">选型与订货参数</a>
+        <a href="#docs">系统图与接线</a>
+        <a href="#docs">软件与运维</a>
+      </div>
+      <div class="footer-col">
+        <h4>公司</h4>
+        <a href="#mfg">制造能力</a>
+        <a href="#about">关于恒源</a>
+        <a href="#inquiry">联系与询价</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 福建恒源电力设备有限公司</span>
+      <span class="demo-flag">本页面为公司官网设计样稿：型号参数、联系方式、资料附件与配图均为示例内容，交付前需替换为真实资料。</span>
+    </div>
+  </div>
 </footer>
 
-<script>
-  // 滚动淡入动画
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+<!-- ===== 抽屉：产品详情 ===== -->
+<div class="backdrop" id="backdrop"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">
+  <div class="drawer-head">
+    <div><div class="k mono" id="drawerModel">—</div><h3 id="drawerTitle">—</h3></div>
+    <button class="drawer-close" id="drawerClose" aria-label="关闭">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 5l14 14M19 5 5 19"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot">
+    <button class="btn btn-solid" id="drawerInquiry">就该型号询价</button>
+    <button class="btn btn-line" id="drawerDoc" style="border-color:var(--line);color:var(--ink)">下载总样本</button>
+  </div>
+</aside>
 
-  // 表单演示提示
-  document.getElementById('contact-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    document.getElementById('form-msg').style.display = 'block';
-    e.target.reset();
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ================= 数据 ================= */
+const PRODUCTS = [
+  {id:'ggd',model:'GGD',name:'交流低压配电柜',cat:'lv',catLabel:'低压成套',glyph:'fixed',
+   specs:[['结构','固定式 · 户内落地'],['额定电流','至 3200 A'],['防护等级','IP30']],
+   params:[['额定电压','380 / 400 V'],['额定绝缘电压','690 V'],['主母线电流','至 3200 A'],['出线回路','按系统图定制'],['柜体尺寸','800 / 1000 × 600 × 2200 mm'],['执行标准','GB/T 7251.1'],['安装方式','户内落地 · 基础槽钢']],
+   use:'变电站、工矿企业与商业建筑的低压配电和动力分配；回路多、需要频繁检修的场合。',
+   docs:['D-01','D-02']},
+  {id:'gcs',model:'GCS',name:'低压抽出式开关柜',cat:'lv',catLabel:'低压成套',glyph:'drawer',
+   specs:[['抽屉单元','8E / 16E / 24E'],['额定电流','至 3200 A'],['防护等级','IP30–IP40']],
+   params:[['额定电压','380 / 400 V'],['水平母线','至 3200 A'],['抽屉规格','8E / 16E / 24E / 32E'],['单元互换','同规格抽屉可互换'],['柜体尺寸','800 / 1000 × 600 / 800 × 2200 mm'],['执行标准','GB/T 7251.1 · IEC 61439-1'],['安装方式','户内并柜落地']],
+   use:'对供电连续性要求较高的场所：数据中心辅助配电、医院、厂房生产线，故障单元可带电隔离后整体更换。',
+   docs:['D-01','D-02']},
+  {id:'gck',model:'GCK',name:'低压抽出式开关柜',cat:'lv',catLabel:'低压成套',glyph:'drawer',
+   specs:[['回路容量','至 2500 A'],['手车/抽屉','混装可选'],['防护等级','IP30']],
+   params:[['额定电压','380 / 400 V'],['主母线电流','至 2500 A'],['功能单元','抽屉式与固定式混装'],['出线回路','至 24 路 / 柜（按模数）'],['柜体尺寸','800 × 600 × 2200 mm'],['执行标准','GB/T 7251.1'],['安装方式','户内并柜落地']],
+   use:'中小型工厂动力中心、既有配电室改造；柜体占地小，回路扩展灵活。',
+   docs:['D-01','D-02']},
+  {id:'mns',model:'MNS',name:'模块化低压成套设备',cat:'lv',catLabel:'低压成套',glyph:'drawer',
+   specs:[['模数结构','25 mm 模数'],['额定电流','至 3200 A'],['分隔型式','至 4b']],
+   params:[['额定电压','380 / 400 V'],['主母线电流','至 3200 A'],['模数','25 mm 标准化模数'],['分隔型式','形式 2b / 3b / 4b 可选'],['柜体尺寸','600 / 800 × 600 × 2200 mm'],['执行标准','GB/T 7251.1 · IEC 61439-1'],['安装方式','户内并柜落地']],
+   use:'需要标准化模数与高分隔要求的项目：外资厂房、制药与食品车间、海外成套配套。',
+   docs:['D-01','D-02']},
+  {id:'xl21',model:'XL-21',name:'动力配电箱',cat:'box',catLabel:'配电箱与控制箱',glyph:'box',
+   specs:[['额定电流','至 630 A'],['安装','落地 / 挂墙'],['防护等级','IP30 / IP54']],
+   params:[['额定电压','380 / 400 V'],['额定电流','至 630 A'],['进出线','上进下出 / 下进下出可选'],['柜体尺寸','按回路数定制'],['材质','冷轧板喷塑 / 304 不锈钢'],['执行标准','GB/T 7251.1'],['安装方式','室内落地或挂墙']],
+   use:'车间动力回路、水泵与风机控制、临时用电配电；回路数不固定、需要按图定制的场合。',
+   docs:['D-03','D-06']},
+  {id:'pz30',model:'PZ30',name:'终端组合电器箱',cat:'box',catLabel:'配电箱与控制箱',glyph:'box',
+   specs:[['额定电流','至 125 A'],['回路','6–36 位可选'],['安装','嵌墙 / 明装']],
+   params:[['额定电压','230 / 400 V'],['额定电流','至 125 A'],['回路位数','6 / 12 / 18 / 24 / 36 位'],['箱体材质','冷轧板喷塑 / 面板可选'],['安装方式','嵌墙、明装、暗装'],['执行标准','GB/T 7251.3'],['适用','住宅、办公与商铺末端配电']],
+   use:'住宅户内、商铺与办公空间的末端照明和插座回路分配。',
+   docs:['D-06']},
+  {id:'jxf',model:'JXF',name:'控制箱与操作台壳体',cat:'box',catLabel:'配电箱与控制箱',glyph:'box',
+   specs:[['额定电流','至 250 A'],['防护等级','IP54'],['材质','冷板 / 304']],
+   params:[['额定电压','380 / 400 V'],['额定电流','至 250 A'],['防护等级','IP54（可选 IP65）'],['板材','1.2–2.0 mm 冷轧板 / 304 不锈钢'],['安装方式','挂墙或立式'],['执行标准','GB/T 7251.1'],['配套','可加操作面板、指示灯与按钮']],
+   use:'设备配套控制、泵房与风机就地控制、小型自动化柜体；需要防尘防水的车间环境。',
+   docs:['D-06','D-07']},
+  {id:'hyx1',model:'HYX-1',name:'智能配电箱（烟感 · 温控）',cat:'smart',catLabel:'智能监测',glyph:'smart',
+   specs:[['监测','烟雾 + 温度'],['通讯','RS485 / 4G'],['告警','声光 + 推送']],
+   params:[['箱体基础','PZ30 / XL-21 箱体扩展'],['监测对象','箱内烟雾浓度、箱内温度'],['告警方式','本地声光 + 远程推送'],['风机控制','按温度分档启停（可设阈值）'],['通讯接口','RS485 / Modbus RTU，可选 4G 网关'],['记录','告警与温度记录本地留存，可导出'],['取能','监测回路独立取能，不影响主回路保护']],
+   use:'无人值守的末端配电、充电桩配套箱、户外机柜与冷库配电；需要远程知道箱内是否过热或起烟的场合。',
+   docs:['D-05','D-08']},
+  {id:'hyjg',model:'HY-JG',name:'柜体与金属结构件',cat:'frame',catLabel:'柜体与结构件',glyph:'frame',
+   specs:[['板厚','1.0–2.5 mm'],['材质','冷轧板 / 304'],['工艺','激光 · 折弯 · 喷涂']],
+   params:[['加工板厚','1.0 / 1.2 / 1.5 / 2.0 / 2.5 mm'],['常用材质','冷轧板、镀锌板、304 不锈钢'],['表面处理','静电粉末喷涂 / 镀锌 / 拉丝'],['加工能力','激光切割、数控折弯、焊接打磨'],['典型件','柜体骨架、门板、安装底板、支架'],['执行依据','按客户图纸与公差要求']],
+   use:'为成套厂配套柜体与结构件，或按项目图纸加工非标金属件。',
+   docs:['D-07']}
+];
+
+const CATS = [
+  {id:'all',label:'全部型号'},
+  {id:'lv',label:'低压成套'},
+  {id:'box',label:'配电箱与控制箱'},
+  {id:'smart',label:'智能监测'},
+  {id:'frame',label:'柜体与结构件'}
+];
+
+const DOCS = [
+  {no:'D-01',title:'HY-LV 低压成套开关设备产品总样本',cat:'样本',catLabel:'产品样本',ver:'V3.2',fmt:'PDF',size:'18.6 MB',date:'2026-09-18',
+   summary:'含 GGD / GCS / GCK / MNS 四种柜型的柜面布置、单元模数、母线规格与订货说明，附典型系统图与并柜示意。'},
+  {no:'D-02',title:'低压成套选型与订货参数表',cat:'选型',catLabel:'选型与报价',ver:'V2.4',fmt:'XLSX',size:'1.8 MB',date:'2026-10-12',
+   summary:'按柜型、回路数、元件品牌与安装方式列出可选参数，可依据系统图逐项填写生成订货清单。'},
+  {no:'D-03',title:'XL-21 动力配电箱典型系统图与柜面布置',cat:'图纸',catLabel:'图纸与接线',ver:'V1.6',fmt:'DWG + PDF',size:'4.2 MB',date:'2026-08-27',
+   summary:'含 6 种常用回路的典型系统图、柜面元件布置与端子编号规则，可直接在 CAD 中修改套用。'},
+  {no:'D-04',title:'低压成套开关设备出厂试验项目与判定',cat:'检测',catLabel:'检测与认证',ver:'V1.0',fmt:'PDF',size:'2.1 MB',date:'2026-07-05',
+   summary:'逐项列出绝缘电阻、介电耐压、保护电路连续性与功能试验的试验方法、判定值与记录格式。'},
+  {no:'D-05',title:'HYX-1 智能配电箱监测模块通讯协议',cat:'软件',catLabel:'软件与运维',ver:'V2.0',fmt:'PDF',size:'1.2 MB',date:'2026-11-02',
+   summary:'Modbus RTU 寄存器地址表：温度、烟雾状态、告警等级、风机输出与告警记录读取方式，附报文示例。'},
+  {no:'D-06',title:'配电箱安装、调试与维护手册',cat:'安装',catLabel:'安装与维护',ver:'V3.1',fmt:'PDF',size:'6.4 MB',date:'2026-06-20',
+   summary:'安装条件、基础与固定方式、接线检查项、送电前确认清单，以及季度巡检与滤网清洁要求。'},
+  {no:'D-07',title:'柜体结构件加工能力与常用参数',cat:'选型',catLabel:'选型与报价',ver:'V1.2',fmt:'PDF',size:'2.6 MB',date:'2026-05-15',
+   summary:'板厚与折弯半径对照、常用柜体骨架规格、表面处理选项与公差范围，供成套厂配套选型使用。'},
+  {no:'D-08',title:'智能烟雾感应报警管理软件操作说明',cat:'软件',catLabel:'软件与运维',ver:'V1.3',fmt:'PDF',size:'3.0 MB',date:'2026-10-28',
+   summary:'告警阈值设置、值班端接收与确认流程、记录导出与账号权限说明；含常见误报情形与排查方法。'}
+];
+
+const DOC_CATS = [
+  {id:'all',label:'全部资料'},
+  {id:'样本',label:'产品样本'},
+  {id:'选型',label:'选型与报价'},
+  {id:'图纸',label:'图纸与接线'},
+  {id:'检测',label:'检测与认证'},
+  {id:'软件',label:'软件与运维'},
+  {id:'安装',label:'安装与维护'}
+];
+
+const state = {cat:'all', q:'', docCat:'all', current:null};
+
+/* ================= 工具 ================= */
+const $ = s => document.querySelector(s);
+let toastTimer = null;
+function toast(msg){
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 3200);
+}
+
+function glyph(type){
+  const base = 'viewBox="0 0 72 96" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"';
+  if(type === 'fixed'){
+    return '<svg '+base+'><rect x="8" y="4" width="56" height="88"/><path d="M8 32h56M8 58h56M8 76h56"/><rect x="16" y="12" width="18" height="12"/><path d="M52 16v10M50 21h4"/><circle cx="36" cy="40" r="4"/><path d="M20 66h32"/><circle cx="20" cy="82" r="2"/></svg>';
+  }
+  if(type === 'drawer'){
+    return '<svg '+base+'><rect x="8" y="4" width="56" height="88"/><path d="M30 4v88M34 4v88"/><path d="M8 22h22M8 38h22M8 54h22M8 70h22"/><path d="M40 20h18M40 34h18M40 48h18M40 62h18M40 76h18"/><rect x="44" y="8" width="8" height="6"/></svg>';
+  }
+  if(type === 'box'){
+    return '<svg '+base+'><rect x="12" y="10" width="48" height="76"/><path d="M12 46h48"/><path d="M32 22h8v6h-8z"/><circle cx="20" cy="58" r="2"/><path d="M18 70h36"/><circle cx="20" cy="30" r="1.5"/></svg>';
+  }
+  if(type === 'smart'){
+    return '<svg '+base+'><rect x="8" y="10" width="56" height="76"/><path d="M8 34h56M8 60h56"/><circle cx="52" cy="22" r="4.5"/><path d="M18 46q6-6 12 0t12 0"/><path d="M18 74h20M46 74h8"/><rect x="18" y="66" width="10" height="4"/></svg>';
+  }
+  return '<svg '+base+'><rect x="10" y="6" width="52" height="84"/><path d="M30 6v10h12V6M30 84v6M42 90v-6"/><path d="M22 26h28v44h-28z"/><path d="M18 14h4v4h-4zM18 22h4v4h-4z"/></svg>';
+}
+
+/* ================= 产品渲染 ================= */
+function renderChips(){
+  $('#catChips').innerHTML = CATS.map(c=>{
+    const n = c.id === 'all' ? PRODUCTS.length : PRODUCTS.filter(p=>p.cat===c.id).length;
+    return '<button class="chip" data-cat="'+c.id+'" aria-pressed="'+(state.cat===c.id)+'">'+c.label+'<span class="cnt mono">'+n+'</span></button>';
+  }).join('');
+}
+
+function filteredProducts(){
+  const q = state.q.trim().toLowerCase();
+  return PRODUCTS.filter(p=>{
+    const catOk = state.cat === 'all' || p.cat === state.cat;
+    if(!catOk) return false;
+    if(!q) return true;
+    const hay = [p.model,p.name,p.catLabel,p.use,p.specs.flat().join(' ')].join(' ').toLowerCase();
+    return hay.includes(q);
   });
+}
+
+function renderProducts(){
+  const list = filteredProducts();
+  const grid = $('#productGrid');
+  if(!list.length){
+    grid.innerHTML = '<div class="empty-state"><h3 style="font-size:15px;font-weight:500">没有匹配的型号</h3><p>试试“GGD”“动力配电箱”“不锈钢”，或者清除筛选查看全部 9 个型号。</p></div>';
+  } else {
+    grid.innerHTML = list.map(p=>{
+      const specs = p.specs.map(s=>'<li><b>'+s[0]+'</b><span class="mono">'+s[1]+'</span></li>').join('');
+      return '<article class="pcard" onclick="openDrawer(\''+p.id+'\')">'+
+        '<div class="pcard-top"><div><div class="pcard-model mono">'+p.model+'</div><h3>'+p.name+'</h3></div><span class="pcard-glyph" aria-hidden="true">'+glyph(p.glyph)+'</span></div>'+
+        '<ul class="pspecs">'+specs+'</ul>'+
+        '<div class="pcard-foot"><span>'+p.catLabel+' · 资料 '+p.docs.length+' 份</span>'+
+        '<button class="go" data-id="'+p.id+'" onclick="event.stopPropagation();openDrawer(\''+p.id+'\')">查看参数</button></div>'+
+        '</article>';
+    }).join('');
+  }
+  const catLabel = CATS.find(c=>c.id===state.cat).label;
+  $('#resultText').innerHTML = '当前：<b>'+catLabel+'</b>'+(state.q?' · 关键词 “<b>'+state.q+'</b>”':'')+' · 共 <b>'+list.length+'</b> 个型号';
+  $('#resetFilter').style.display = (state.cat==='all' && !state.q) ? 'none' : 'inline-block';
+}
+
+/* ================= 抽屉 ================= */
+function docById(no){ return DOCS.find(d=>d.no===no); }
+
+function openDrawer(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  state.current = p;
+  $('#drawerModel').textContent = p.model + ' · ' + p.catLabel;
+  $('#drawerTitle').textContent = p.name;
+  const params = p.params.map(v=>'<div>'+v[0]+'</div><div>'+v[1]+'</div>').join('');
+  const docs = p.docs.map(no=>{
+    const d = docById(no);
+    return '<li><span class="n mono">'+d.no+'</span><span class="t">'+d.title+'</span><button class="dl" data-doc="'+d.no+'" onclick="downloadDoc(\''+d.no+'\')">下载</button></li>';
+  }).join('');
+  $('#drawerBody').innerHTML =
+    '<div class="drawer-sec"><h4>主要参数</h4><div class="param">'+params+'</div></div>'+
+    '<div class="drawer-sec"><h4>适用场景</h4><p>'+p.use+'</p></div>'+
+    '<div class="drawer-sec"><h4>配套资料</h4><ul class="docs-mini">'+docs+'</ul></div>'+
+    '<div class="drawer-sec"><h4>说明</h4><p style="font-size:12px;color:#6f7a80">以上为典型参数，实际以项目系统图与订货技术协议为准；柜体尺寸、回路数与元件品牌均可按图调整。</p></div>';
+  $('#drawer').classList.add('open');
+  $('#drawer').setAttribute('aria-hidden','false');
+  $('#backdrop').classList.add('show');
+  document.body.classList.add('drawer-open');
+  $('#drawerClose').focus();
+}
+
+function closeDrawer(){
+  $('#drawer').classList.remove('open');
+  $('#drawer').setAttribute('aria-hidden','true');
+  $('#backdrop').classList.remove('show');
+  document.body.classList.remove('drawer-open');
+  state.current = null;
+}
+
+/* ================= 下载 ================= */
+function downloadDoc(no){
+  const d = docById(no);
+  if(!d) return;
+  const text = [
+    '福建恒源电力设备有限公司 · 技术资料（演示文件）',
+    '------------------------------------------------',
+    '资料编号：' + d.no,
+    '资料名称：' + d.title,
+    '资料类别：' + d.catLabel,
+    '版本：' + d.ver + '    格式：' + d.fmt + '    文件大小：' + d.size,
+    '更新日期：' + d.date,
+    '------------------------------------------------',
+    '内容摘要：',
+    d.summary,
+    '',
+    '说明：',
+    '本文件由官网演示页面在本地生成，用于演示下载流程，不是真实技术资料。',
+    '正式版本（' + d.fmt + '）请联系销售工程师获取；需要盖章版或与本项目匹配的图纸，请在询价页面提交项目信息。',
+    '',
+    '福建恒源电力设备有限公司',
+    '福建省福州市闽侯县南屿镇尧溪路 18 号 23 号楼',
+    '© 2026 福建恒源电力设备有限公司'
+  ].join('\n');
+  const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'HY_' + d.no + '_' + d.title.replace(/[\\/:*?"<>|]/g,'') + '_' + d.ver + '.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
+  toast('已生成《' + d.title + '》资料说明文件（演示环境，正式附件请联系索取）');
+}
+
+/* ================= 资料中心 ================= */
+function renderDocChips(){
+  $('#docChips').innerHTML = DOC_CATS.map(c=>{
+    const n = c.id === 'all' ? DOCS.length : DOCS.filter(d=>d.cat===c.id).length;
+    return '<button class="chip" data-doccat="'+c.id+'" aria-pressed="'+(state.docCat===c.id)+'">'+c.label+'<span class="cnt mono">'+n+'</span></button>';
+  }).join('');
+}
+
+function renderDocs(){
+  const list = DOCS.filter(d=>state.docCat==='all' || d.cat===state.docCat);
+  $('#docList').innerHTML = list.map(d=>
+    '<div class="doc-row">'+
+      '<div class="no mono">'+d.no+'</div>'+
+      '<div><div class="ttl">'+d.title+'</div><div class="sub">'+d.catLabel+'</div>'+
+        '<div class="meta-mobile mono">'+d.ver+' · '+d.fmt+' · '+d.size+' · '+d.date+'</div></div>'+
+      '<div class="ver mono">'+d.ver+'</div>'+
+      '<div class="fmt mono" style="font-size:11px">'+d.fmt+' · '+d.size+'</div>'+
+      '<div class="date mono">'+d.date+'</div>'+
+      '<div class="act"><button class="btn btn-line" data-doc="'+d.no+'" onclick="downloadDoc(\''+d.no+'\')" style="border-color:var(--line);color:var(--ink);min-height:38px;padding:0 14px;font-size:12px">下载</button></div>'+
+    '</div>'
+  ).join('');
+}
+
+/* ================= 智能配电演示 ================= */
+const DEMO_STATES = {
+  normal:{temp:'31.8', fan:'停止', alarm:'无', alarmClass:'state-ok', out:'待命', logs:[
+    ['08:42','箱内温度 31.8 ℃，低于风机启动阈值 38 ℃'],
+    ['08:42','烟雾传感器自检通过，无告警'],
+    ['08:41','监测回路心跳正常']]},
+  heat:{temp:'46.2', fan:'高速运行', alarm:'一级 · 温升提示', alarmClass:'state-warn', out:'风机输出 ON', logs:[
+    ['08:47','箱内温度 46.2 ℃，超过二级阈值 45 ℃'],
+    ['08:47','风机切至高速档，进风滤网状态正常'],
+    ['08:45','温度上升速率 0.6 ℃/min，持续监视']]},
+  smoke:{temp:'38.4', fan:'高速运行', alarm:'二级 · 烟感报警', alarmClass:'state-alarm', out:'干接点闭合 · 推送已发', logs:[
+    ['08:52','烟雾浓度超阈值，触发二级告警'],
+    ['08:52','本地声光启动，值班端推送已发出'],
+    ['08:52','联动干接点闭合，记录已写入本地存储']]}
+};
+
+function setDemo(name){
+  const d = DEMO_STATES[name];
+  if(!d) return;
+  $('#dTemp').innerHTML = d.temp + '<small>℃</small>';
+  $('#dFan').textContent = d.fan;
+  const alarmEl = $('#dAlarm');
+  alarmEl.textContent = d.alarm;
+  alarmEl.className = d.alarmClass;
+  $('#dOut').textContent = d.out;
+  $('#demoLog').innerHTML = d.logs.map(l=>'<div class="row"><span>'+l[0]+'</span><span>'+l[1]+'</span></div>').join('');
+  document.querySelectorAll('.dtab').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.state===name)));
+}
+
+/* ================= 表单 ================= */
+function renderModelOptions(){
+  $('#fModel').innerHTML = '<option value="">未确定 / 由工程师建议</option>' +
+    PRODUCTS.map(p=>'<option value="'+p.model+'">'+p.model+' — '+p.name+'</option>').join('');
+}
+
+function fieldError(id, msg){
+  const el = document.querySelector('[data-err="'+id+'"]');
+  if(el) el.textContent = msg || '';
+}
+
+function validateForm(){
+  let ok = true;
+  const project = $('#fProject').value.trim();
+  const contact = $('#fContact').value.trim();
+  const phone = $('#fPhone').value.replace(/\s|-/g,'');
+  fieldError('fProject',''); fieldError('fContact',''); fieldError('fPhone','');
+  if(!project){ fieldError('fProject','请填写项目名称'); ok = false; }
+  if(!contact){ fieldError('fContact','请填写联系人'); ok = false; }
+  if(!phone){ fieldError('fPhone','请填写联系电话'); ok = false; }
+  else if(!/^(\d{7,15}|0\d{2,3}\d{7,8})$/.test(phone)){ fieldError('fPhone','电话格式看起来不对，请填写手机或座机号码'); ok = false; }
+  return ok;
+}
+
+/* ================= 事件绑定 ================= */
+document.addEventListener('click', function(e){
+  const chip = e.target.closest('[data-cat]');
+  if(chip && chip.classList.contains('chip')){
+    state.cat = chip.dataset.cat;
+    renderChips(); renderProducts();
+    return;
+  }
+  const docChip = e.target.closest('[data-doccat]');
+  if(docChip){
+    state.docCat = docChip.dataset.doccat;
+    renderDocChips(); renderDocs();
+    return;
+  }
+  const go = e.target.closest('.pcard .go');
+  if(go){ openDrawer(go.dataset.id); return; }
+  const dl = e.target.closest('[data-doc]');
+  if(dl){ downloadDoc(dl.dataset.doc); return; }
+  const footerCat = e.target.closest('.footer-col [data-cat]');
+  if(footerCat){
+    state.cat = footerCat.dataset.cat; state.q='';
+    $('#prodSearch').value = '';
+    renderChips(); renderProducts();
+    return;
+  }
+  const dtab = e.target.closest('.dtab');
+  if(dtab){ setDemo(dtab.dataset.state); return; }
+});
+
+$('#prodSearch').addEventListener('input', function(){ state.q = this.value; renderProducts(); });
+$('#prodSearchBtn').addEventListener('click', function(){
+  state.q = $('#prodSearch').value;
+  renderProducts();
+  $('#productGrid').scrollIntoView({behavior:'smooth', block:'start'});
+});
+$('#resetFilter').addEventListener('click', function(){
+  state.cat='all'; state.q=''; $('#prodSearch').value='';
+  renderChips(); renderProducts();
+});
+$('#drawerClose').addEventListener('click', closeDrawer);
+$('#backdrop').addEventListener('click', closeDrawer);
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeDrawer(); });
+$('#drawerInquiry').addEventListener('click', function(){
+  const p = state.current;
+  closeDrawer();
+  if(p){ $('#fModel').value = p.model; $('#fNote').value = '关注型号：' + p.model + ' ' + p.name + '。'; }
+  document.getElementById('inquiry').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>$('#fProject').focus(), 500);
+});
+$('#drawerDoc').addEventListener('click', function(){ downloadDoc('D-01'); });
+
+$('#menuBtn').addEventListener('click', function(){
+  const nav = $('#mobileNav');
+  const open = nav.classList.toggle('open');
+  this.setAttribute('aria-expanded', String(open));
+});
+document.querySelectorAll('#mobileNav a').forEach(a=>a.addEventListener('click', ()=>{
+  $('#mobileNav').classList.remove('open');
+  $('#menuBtn').setAttribute('aria-expanded','false');
+}));
+
+$('#inquiryForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  if(!validateForm()){
+    const firstErr = document.querySelector('.err:not(:empty)');
+    if(firstErr) firstErr.closest('.field').querySelector('input,.select,select')?.focus();
+    return;
+  }
+  const data = {
+    project: $('#fProject').value.trim(),
+    type: $('#fType').value,
+    model: $('#fModel').value || '未确定',
+    contact: $('#fContact').value.trim(),
+    phone: $('#fPhone').value.trim(),
+    note: $('#fNote').value.trim() || '（未填写）'
+  };
+  const box = $('#formResult');
+  box.innerHTML = '<b>需求已整理（演示）</b><br>' +
+    '项目：' + data.project + '<br>类型：' + data.type + '<br>型号：' + data.model +
+    '<br>联系人：' + data.contact + ' · ' + data.phone +
+    '<br>说明：' + data.note +
+    '<div class="acts"><button class="mini" id="copyInquiry">复制询价信息</button><button class="mini" id="anotherInquiry">再填一份</button></div>' +
+    '<div style="margin-top:10px;color:#a79a8f;font-size:11px">演示环境不会发送任何数据。正式上线后应接入企业邮箱或表单服务。</div>';
+  box.classList.add('show');
+  toast('需求已在本页整理完成，可复制后发给我们（演示）');
+  $('#inquiryForm').scrollIntoView({behavior:'smooth', block:'center'});
+  $('#copyInquiry').addEventListener('click', function(){
+    const txt = '项目：'+data.project+'\n需求类型：'+data.type+'\n型号：'+data.model+'\n联系人：'+data.contact+'\n电话：'+data.phone+'\n说明：'+data.note;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(()=>toast('询价信息已复制到剪贴板')).catch(()=>toast('复制失败，请手动选择文字'));
+    } else { toast('当前环境不支持自动复制，请手动选择文字'); }
+  });
+  $('#anotherInquiry').addEventListener('click', function(){
+    $('#inquiryForm').reset();
+    box.classList.remove('show');
+    $('#fProject').focus();
+  });
+});
+
+/* ================= 初始化 ================= */
+renderChips();
+renderProducts();
+renderDocChips();
+renderDocs();
+renderModelOptions();
+setDemo('normal');
 </script>
 </body>
 </html>
+<!-- （注：内容由AI生成） -->
